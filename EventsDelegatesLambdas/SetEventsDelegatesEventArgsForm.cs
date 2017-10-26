@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace EventsDelegatesLambdas
 {
-    public partial class Form1 : Form
+    public partial class SetEventsDelegatesEventArgsForm : Form
     {
-        public Form1()
+        public SetEventsDelegatesEventArgsForm()
         {
             InitializeComponent();
         }

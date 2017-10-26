@@ -1,6 +1,6 @@
 ﻿namespace EventsDelegatesLambdas
 {
-    partial class Form1
+    partial class SetEventsDelegatesEventArgsForm
     {
         /// <summary>
         /// Required designer variable.
