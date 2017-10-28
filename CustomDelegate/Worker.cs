@@ -10,22 +10,27 @@ namespace CustomDelegate
 
     class Worker
     {
+
         //Declaring events
-        public event ReturnWorkPerformedHandler returnWorkPerformed;
+        public event ReturnWorkPerformedHandler returnWorkPerformed; //Event definition
         public event EventHandler workComplete;
 
-        public void DoWork(int hours, WorkType workType)
+        public virtual void DoWork(int hours, WorkType workType)
         {
-
+            //Do some work and notify consumer that work has been performed
+            OnWorkPerformed(hours, workType);
         }
 
-        //Raising events
-        private void RaiseEvent(object obj, EventArgs args) {
+        protected virtual void OnWorkPerformed(int hours, WorkType workType)
+        {
+            //Raise event
+            ReturnWorkPerformedHandler del = returnWorkPerformed as ReturnWorkPerformedHandler;
 
-            if (returnWorkPerformed != null)
+            if (del != null) //Check if listener attached
             {
-                returnWorkPerformed(12, WorkType.GenerateReports);
+                del(hours, workType);
             }
         }
+
     }
 }
