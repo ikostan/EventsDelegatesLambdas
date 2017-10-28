@@ -13,14 +13,35 @@ namespace CustomDelegate
 
         //Declaring events
         public event ReturnWorkPerformedHandler returnWorkPerformed; //Event definition
-        public event EventHandler workComplete;
+        public event EventHandler workCompleted;
 
         public virtual void DoWork(int hours, WorkType workType)
         {
-            //Do some work and notify consumer that work has been performed
-            OnWorkPerformed(hours, workType);
+
+            for (int i = 0; i < hours; i++)
+            {
+                //Raise an event for each hour of work
+                //Do some work and notify consumer that work has been performed
+                OnWorkPerformed(hours, workType);
+            }
+
+            //Raise an event when the work is done
         }
 
+        //Work completed method
+        protected virtual void OnWorkCompleted()
+        {
+            //Invoke delegate
+            var del = workCompleted as EventHandler;
+
+            if (del != null) //Test if listener attached
+            {
+                //Pass itself as an object and pass empty EventArgs because we do not have any.
+                del(this, EventArgs.Empty);
+            }
+        }
+
+        //Work performed method
         protected virtual void OnWorkPerformed(int hours, WorkType workType)
         {
             //Raise event
