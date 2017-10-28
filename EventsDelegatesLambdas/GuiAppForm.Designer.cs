@@ -1,6 +1,6 @@
 ﻿namespace EventsDelegatesLambdas
 {
-    partial class SetEventsDelegatesEventArgsForm
+    partial class GuiAppForm
     {
         /// <summary>
         /// Required designer variable.

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace EventsDelegatesLambdas
 {
-    static class SetEventsDelegatesEventArgsProgram
+    static class GuiAppProgram
     {
         /// <summary>
         /// The main entry point for the application.
@@ -16,7 +16,7 @@ namespace EventsDelegatesLambdas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SetEventsDelegatesEventArgsForm());
+            Application.Run(new GuiAppForm());
         }
     }
 }

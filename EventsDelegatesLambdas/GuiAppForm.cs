@@ -11,9 +11,9 @@ using System.Collections.Generic;
 
 namespace EventsDelegatesLambdas
 {
-    public partial class SetEventsDelegatesEventArgsForm : Form
+    public partial class GuiAppForm : Form
     {
-        public SetEventsDelegatesEventArgsForm()
+        public GuiAppForm()
         {
             InitializeComponent();
         }
