@@ -49,6 +49,7 @@
     <Compile Include="ShowTime.cs" />
     <Compile Include="TimeEventArgs.cs" />
     <Compile Include="Worker.cs" />
+    <Compile Include="WorkPerformedArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

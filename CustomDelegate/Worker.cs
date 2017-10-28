@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CustomDelegate
 {
-    public delegate int ReturnWorkPerformedHandler(int hours, WorkType workType);
+    //public delegate int ReturnWorkPerformedHandler(int hours, WorkType workType);
 
     class Worker
     {
 
         //Declaring events
-        public event ReturnWorkPerformedHandler returnWorkPerformed; //Event definition
+        public event EventHandler<WorkPerformedArgs> returnWorkPerformed; //Event definition
         public event EventHandler workCompleted;
 
         public virtual void DoWork(int hours, WorkType workType)
@@ -53,11 +53,11 @@ namespace CustomDelegate
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
 
             //Raise event
-            ReturnWorkPerformedHandler del = returnWorkPerformed as ReturnWorkPerformedHandler;
+            var del = returnWorkPerformed as EventHandler<WorkPerformedArgs>;
 
             if (del != null) //Check if listener attached
             {
-                del(hours, workType);
+                del(this, new WorkPerformedArgs() { Hours = hours, WType = workType });
             }
         }
 

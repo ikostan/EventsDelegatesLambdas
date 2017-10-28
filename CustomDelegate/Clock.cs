@@ -14,6 +14,8 @@ namespace CustomDelegate
         public delegate void TimeChanged(object obj, TimeEventArgs args);
         public event TimeChanged timeChanged;
 
+        //public event EventHandler<TimeEventArgs> timeChanged;
+
         public void StartTimer() {
 
             while (true)
