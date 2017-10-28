@@ -17,6 +17,9 @@ namespace CustomDelegate
 
         public virtual void DoWork(int hours, WorkType workType)
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+
+            Console.WriteLine("Start looping..."); 
 
             for (int i = 0; i < hours; i++)
             {
@@ -26,11 +29,14 @@ namespace CustomDelegate
             }
 
             //Raise an event when the work is done
+            OnWorkCompleted();
         }
 
         //Work completed method
         protected virtual void OnWorkCompleted()
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+
             //Invoke delegate
             var del = workCompleted as EventHandler;
 
@@ -44,6 +50,8 @@ namespace CustomDelegate
         //Work performed method
         protected virtual void OnWorkPerformed(int hours, WorkType workType)
         {
+            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+
             //Raise event
             ReturnWorkPerformedHandler del = returnWorkPerformed as ReturnWorkPerformedHandler;
 

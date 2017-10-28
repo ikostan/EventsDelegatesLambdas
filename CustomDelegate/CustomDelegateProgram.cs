@@ -29,6 +29,16 @@ namespace CustomDelegate
 
             Console.WriteLine($"Work Performed: {returnWorkPerformedHandler(45, WorkType.Negotiation):N2}$");
 
+            Worker worker = new Worker();
+
+            worker.DoWork(8, WorkType.GoToMeetings);
+
+
+            Clock clock = new Clock();
+            ShowTime display = new ShowTime();
+            display.RegisterEvent(clock);
+            clock.StartTimer();
+
             Console.ReadKey();
         }
 
