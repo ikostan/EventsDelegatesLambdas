@@ -42,37 +42,68 @@ namespace CustomDelegate
             worker.Name = "John Doe";
 
             //Regular approach:
-            //worker.ReturnWorkPerformed += new EventHandler<WorkPerformedArgs>(Worker_WorkPerformed);
-            //worker.WorkCompleted += new EventHandler(Worker_WorkCompleted);
+            //RegularHandler(worker);
 
             //Anonymous methods:
-            worker.ReturnWorkPerformed += delegate (object sender, WorkPerformedArgs arguments)
-            {
-                string hrs = (arguments.Hours > 1) ? "hours" : "hour";
-                Console.WriteLine($"Working {arguments.Hours} {hrs} hours on {arguments.WType}...");
-            };
+            //AnonymousMethods(worker);
 
-            worker.WorkCompleted += delegate (object sender, EventArgs arguments)
-            {
-                string name = (sender as Worker).Name;
-                Console.WriteLine($"{name} finished his duties.");
-            };
+            //Using Lambda expression:
+            LambdaExpression(worker);
 
+            //Do some work and report on the progress
             worker.DoWork(22, WorkType.Negotiation);
 
             Console.ReadKey();
         }
 
-        private static void Worker_WorkCompleted1(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
+        //Using Lambda expression:
+        private static void LambdaExpression(Worker worker) {
+            System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+
+            //Report on progress
+            worker.ReturnWorkPerformed += (obj, args) => {
+                Console.Clear();
+                string hrs = (args.Hours > 1) ? "hours" : "hour";
+                Console.WriteLine($"Working {args.Hours} {hrs} hours on {args.WType}...");
+            };
+
+            //Report on completion
+            worker.WorkCompleted += (obj, args) =>
+            {
+                string name = (sender as Worker).Name;
+                Console.WriteLine($"{name} finished his duties.");
+            };
         }
 
-        private static void Worker_ReturnWorkPerformed(object sender, WorkPerformedArgs e)
+        private static void AnonymousMethods(Worker worker)
         {
-            throw new NotImplementedException();
+            System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+
+            //Report on progress
+            worker.ReturnWorkPerformed += delegate (object sender, WorkPerformedArgs arguments)
+            {
+                Console.Clear();
+                string hrs = (arguments.Hours > 1) ? "hours" : "hour";
+                Console.WriteLine($"Working {arguments.Hours} {hrs} hours on {arguments.WType}...");
+            };
+
+            //Report on completion
+            worker.WorkCompleted += delegate (object sender, EventArgs arguments)
+            {
+                string name = (sender as Worker).Name;
+                Console.WriteLine($"{name} finished his duties.");
+            };
         }
 
+        private static void RegularHandler(Worker worker)
+        {
+            System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+
+            worker.ReturnWorkPerformed += new EventHandler<WorkPerformedArgs>(Worker_WorkPerformed); //Report on completion
+            worker.WorkCompleted += new EventHandler(Worker_WorkCompleted); //Report on progress
+        }
+
+        //Report on completion
         private static void Worker_WorkCompleted(object sender, EventArgs e)
         {
             string name = (sender as Worker).Name;
@@ -81,6 +112,7 @@ namespace CustomDelegate
             Console.WriteLine($"Work is completed by {name}");
         }
 
+        //Report on progress
         public static void Worker_WorkPerformed(object obj, WorkPerformedArgs args)
         {
             System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
