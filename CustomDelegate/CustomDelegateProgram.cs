@@ -42,10 +42,10 @@ namespace CustomDelegate
             worker.Name = "John Doe";
 
             //Regular approach:
-            RegularHandler(worker);
+            //RegularHandler(worker);
 
             //Anonymous methods:
-            AnonymousMethods(worker);
+            //AnonymousMethods(worker);
 
             //Using Lambda expression:
             LambdaExpression(worker);
