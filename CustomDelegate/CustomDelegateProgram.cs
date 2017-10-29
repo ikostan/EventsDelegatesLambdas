@@ -24,22 +24,67 @@ namespace CustomDelegate
 
             //DoSomething(performanceHandler);
 
-            del += workHandler + performanceHandler;
-            del(12, WorkType.GoToMeetings);
+            //del += workHandler + performanceHandler;
+            //del(12, WorkType.GoToMeetings);
 
-            Console.WriteLine($"Work Performed: {returnWorkPerformedHandler(45, WorkType.Negotiation):N2}$");
+            //Console.WriteLine($"Work Performed: {returnWorkPerformedHandler(45, WorkType.Negotiation):N2}$");
+
+            //Worker worker = new Worker();
+
+            //worker.DoWork(8, WorkType.GoToMeetings);
+
+            //Clock clock = new Clock();
+            //ShowTime display = new ShowTime();
+            //display.RegisterEvent(clock);
+            //clock.StartTimer();
 
             Worker worker = new Worker();
+            worker.Name = "John Doe";
 
-            worker.DoWork(8, WorkType.GoToMeetings);
+            //Regular approach:
+            //worker.ReturnWorkPerformed += new EventHandler<WorkPerformedArgs>(Worker_WorkPerformed);
+            //worker.WorkCompleted += new EventHandler(Worker_WorkCompleted);
 
+            //Anonymous methods:
+            worker.ReturnWorkPerformed += delegate (object sender, WorkPerformedArgs arguments)
+            {
+                string hrs = (arguments.Hours > 1) ? "hours" : "hour";
+                Console.WriteLine($"Working {arguments.Hours} {hrs} hours on {arguments.WType}...");
+            };
 
-            Clock clock = new Clock();
-            ShowTime display = new ShowTime();
-            display.RegisterEvent(clock);
-            clock.StartTimer();
+            worker.WorkCompleted += delegate (object sender, EventArgs arguments)
+            {
+                string name = (sender as Worker).Name;
+                Console.WriteLine($"{name} finished his duties.");
+            };
+
+            worker.DoWork(22, WorkType.Negotiation);
 
             Console.ReadKey();
+        }
+
+        private static void Worker_WorkCompleted1(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Worker_ReturnWorkPerformed(object sender, WorkPerformedArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void Worker_WorkCompleted(object sender, EventArgs e)
+        {
+            string name = (sender as Worker).Name;
+
+            System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+            Console.WriteLine($"Work is completed by {name}");
+        }
+
+        public static void Worker_WorkPerformed(object obj, WorkPerformedArgs args)
+        {
+            System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+            Console.WriteLine($"{args.Hours} hours of {args.WType}");
         }
 
         public static void DoSomething(WorkPerformedHandler del)

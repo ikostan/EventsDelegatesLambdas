@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace CustomDelegate
 {
@@ -12,20 +13,27 @@ namespace CustomDelegate
     {
 
         //Declaring events
-        public event EventHandler<WorkPerformedArgs> returnWorkPerformed; //Event definition
-        public event EventHandler workCompleted;
+        public event EventHandler<WorkPerformedArgs> ReturnWorkPerformed; //Event definition
+        public event EventHandler WorkCompleted;
 
+        public string Name { get; set; }
+
+        //Do some work and raise an event while doing it. 
+        //Raise an event when the work is done.
         public virtual void DoWork(int hours, WorkType workType)
         {
-            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+            //Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
 
-            Console.WriteLine("Start looping..."); 
+            //Console.WriteLine("Start looping..."); 
 
-            for (int i = 0; i < hours; i++)
+            for (int i = 1; i <= hours; i++)
             {
+                //Sleep 1 sec
+                Thread.Sleep(1000);
+
                 //Raise an event for each hour of work
                 //Do some work and notify consumer that work has been performed
-                OnWorkPerformed(hours, workType);
+                OnWorkPerformed(i, workType);
             }
 
             //Raise an event when the work is done
@@ -35,31 +43,32 @@ namespace CustomDelegate
         //Work completed method
         protected virtual void OnWorkCompleted()
         {
-            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+            ///Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
 
             //Invoke delegate
-            var del = workCompleted as EventHandler;
+            var workCompletedEvent = WorkCompleted as EventHandler;
 
-            if (del != null) //Test if listener attached
+            if (workCompletedEvent != null) //Test if listener attached
             {
                 //Pass itself as an object and pass empty EventArgs because we do not have any.
-                del(this, EventArgs.Empty);
+                workCompletedEvent(this, EventArgs.Empty);
             }
         }
 
         //Work performed method
         protected virtual void OnWorkPerformed(int hours, WorkType workType)
         {
-            Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
+            //Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
 
             //Raise event
-            var del = returnWorkPerformed as EventHandler<WorkPerformedArgs>;
+            var workEvent = ReturnWorkPerformed as EventHandler<WorkPerformedArgs>;
 
-            if (del != null) //Check if listener attached
+            if (workEvent != null) //Check if listener attached
             {
-                del(this, new WorkPerformedArgs() { Hours = hours, WType = workType });
+                workEvent(this, new WorkPerformedArgs() { Hours = hours, WType = workType });
             }
         }
+
 
     }
 }
