@@ -84,7 +84,7 @@ namespace CustomDelegate
             {
                 Console.Clear();
                 string hrs = (arguments.Hours > 1) ? "hours" : "hour";
-                Console.WriteLine($"Working {arguments.Hours} {hrs} hours on {arguments.WType}...");
+                Console.WriteLine($"Working {arguments.Hours} {hrs} on {arguments.WType}...");
             };
 
             //Report on completion
