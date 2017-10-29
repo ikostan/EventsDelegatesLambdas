@@ -14,5 +14,10 @@ namespace CustomDelegate
             var result = del(x, y);
             Console.WriteLine($"Result: {result}");
         }
+
+        public void ProcessAction(int x, int y, Action<int, int> action)
+        {
+            action(x, y);
+        }
     }
 }

@@ -50,10 +50,10 @@ namespace CustomDelegate
             //AnonymousMethods(worker);
 
             //Using Lambda expression:
-            LambdaExpression(worker);
+            //LambdaExpression(worker);
 
             //Do some work and report on the progress
-            worker.DoWork(22, WorkType.Negotiation);
+            //worker.DoWork(22, WorkType.Negotiation);
 
             ProcessData data = new ProcessData();
             int x = 10, y = 3;
@@ -75,6 +75,11 @@ namespace CustomDelegate
 
             data.Process(x, y, sumDel);
             data.Process(x, y, multiDel);
+
+            //Action usage:
+            Action<int, int> substract = (a, b) => { Console.WriteLine("Result: " + (a - b)); };
+
+            data.ProcessAction(x, y, substract);
 
             Console.ReadKey();
         }
