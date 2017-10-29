@@ -73,13 +73,21 @@ namespace CustomDelegate
                 return paramX * paramY;
             };
 
-            data.Process(x, y, sumDel);
-            data.Process(x, y, multiDel);
+            data.ProcessDelegate(x, y, sumDel);
+            data.ProcessDelegate(x, y, multiDel);
 
             //Action usage:
             Action<int, int> substract = (a, b) => { Console.WriteLine("Result: " + (a - b)); };
 
             data.ProcessAction(x, y, substract);
+
+            //Func usage:
+            Func<int, int, double> funcDevision = (a, b) =>
+            {
+                return ((double) a/ (double) b);
+            };
+
+            data.ProcessFunc(x, y, funcDevision);
 
             Console.ReadKey();
         }

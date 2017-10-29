@@ -9,7 +9,7 @@ namespace CustomDelegate
 {
     class ProcessData
     {
-        public void Process(int x, int y, BizRulesDelegate del)
+        public void ProcessDelegate(int x, int y, BizRulesDelegate del)
         {
             var result = del(x, y);
             Console.WriteLine($"Result: {result}");
@@ -18,6 +18,12 @@ namespace CustomDelegate
         public void ProcessAction(int x, int y, Action<int, int> action)
         {
             action(x, y);
+        }
+
+        public void ProcessFunc(int x, int y, Func <int, int, double> func)
+        {
+            var result = func(x, y);
+            Console.WriteLine($"Result: {result}");
         }
     }
 }
