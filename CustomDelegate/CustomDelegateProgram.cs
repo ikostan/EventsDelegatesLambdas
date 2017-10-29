@@ -7,6 +7,8 @@ using System.Collections.Generic;
 
 namespace CustomDelegate
 {
+    public delegate int BizRulesDelegate(int x, int y);
+
     public class CustomDelegateProgram
     {
         public delegate void WorkPerformedHandler(int hours, WorkType workType);
@@ -53,15 +55,49 @@ namespace CustomDelegate
             //Do some work and report on the progress
             worker.DoWork(22, WorkType.Negotiation);
 
+            ProcessData data = new ProcessData();
+            int x = 10, y = 3;
+
+            //Regular approach
+            //data.Process(x, y, Sum);
+            //data.Process(x, y, Mult);
+
+            //Lambdas:
+            BizRulesDelegate sumDel = (paramX, paramY) =>
+            {
+                return paramX + paramY;
+            };
+
+            BizRulesDelegate multiDel = (paramX, paramY) =>
+            {
+                return paramX * paramY;
+            };
+
+            data.Process(x, y, sumDel);
+            data.Process(x, y, multiDel);
+
             Console.ReadKey();
         }
 
+
+        public static int Sum(int x, int y)
+        {
+            return x + y;
+        }
+
+        public static int Mult(int x, int y)
+        {
+            return x * y;
+        }
+
         //Using Lambda expression:
-        private static void LambdaExpression(Worker worker) {
+        private static void LambdaExpression(Worker worker)
+        {
             System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
 
             //Report on progress
-            worker.ReturnWorkPerformed += (obj, args) => {
+            worker.ReturnWorkPerformed += (obj, args) =>
+            {
                 Console.Clear();
                 string hrs = (args.Hours > 1) ? "hours" : "hour";
                 Console.WriteLine($"Working {args.Hours} {hrs} hours on {args.WType}...");
