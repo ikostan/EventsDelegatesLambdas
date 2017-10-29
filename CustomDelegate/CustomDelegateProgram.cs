@@ -42,10 +42,10 @@ namespace CustomDelegate
             worker.Name = "John Doe";
 
             //Regular approach:
-            //RegularHandler(worker);
+            RegularHandler(worker);
 
             //Anonymous methods:
-            //AnonymousMethods(worker);
+            AnonymousMethods(worker);
 
             //Using Lambda expression:
             LambdaExpression(worker);
@@ -70,7 +70,7 @@ namespace CustomDelegate
             //Report on completion
             worker.WorkCompleted += (obj, args) =>
             {
-                string name = (sender as Worker).Name;
+                string name = (obj as Worker).Name;
                 Console.WriteLine($"{name} finished his duties.");
             };
         }
