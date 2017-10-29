@@ -58,9 +58,9 @@ namespace CustomDelegate
             ProcessData data = new ProcessData();
             int x = 10, y = 3;
 
-            //Regular approach
-            //data.Process(x, y, Sum);
-            //data.Process(x, y, Mult);
+            //Regular approach, passing method as a delegate
+            data.ProcessDelegate(x, y, Sum);
+            data.ProcessDelegate(x, y, Mult);
 
             //Lambdas:
             BizRulesDelegate sumDel = (paramX, paramY) =>
