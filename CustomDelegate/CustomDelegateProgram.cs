@@ -196,6 +196,7 @@ namespace CustomDelegate
             del(34, WorkType.Golf);
         }
 
+        //Methods
         public static void DoSomeWork(int hours, WorkType workType)
         {
             Console.WriteLine(System.Reflection.MethodBase.GetCurrentMethod() + " method called");
