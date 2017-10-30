@@ -81,7 +81,7 @@ namespace CustomDelegate
 
             data.ProcessAction(x, y, substract);
 
-            //Func usage:
+            //Func<T, TResult> usage:
             Func<int, int, double> funcDevision = (a, b) =>
             {
                 return ((double) a/ (double) b);
