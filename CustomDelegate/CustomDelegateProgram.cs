@@ -84,10 +84,32 @@ namespace CustomDelegate
             //Func<T, TResult> usage:
             Func<int, int, double> funcDevision = (a, b) =>
             {
-                return ((double) a/ (double) b);
+                return ((double)a / (double)b);
             };
 
             data.ProcessFunc(x, y, funcDevision);
+
+
+            //Collection
+            List<Customer> customers = new List<Customer>
+            {
+                new Customer {City = "Phoenix", FirstName = "John", LastName="Doe", ID = 1},
+                new Customer {City = "Phoenix", FirstName = "Jane", LastName="Doe", ID = 500},
+                new Customer {City = "Seattle", FirstName = "Suki", LastName="Pizarro", ID = 3},
+                new Customer {City = "New York", FirstName = "Michelle", LastName="Smith", ID = 4}
+            };
+
+            //Lambdas and Delegates functions (LINQ)
+            var phxCusts =
+                    customers
+                        .Where((c) => c.City == "Phoenix" && c.ID < 500)
+                        .OrderBy((c) => c.FirstName);
+
+            //Loop and display the results
+            foreach (var item in phxCusts)
+            {
+                Console.WriteLine($"{item.FirstName} {item.LastName} lives in {item.City}");
+            }
 
             Console.ReadKey();
         }
