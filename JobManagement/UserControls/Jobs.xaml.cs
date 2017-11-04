@@ -1,4 +1,6 @@
-﻿using JobManagement.Model;
+﻿using CommunicatingBetweenControls.Model;
+using JobManagement;
+using JobManagement.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +16,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JobManagement
+namespace CommunicatingBetweenControls.UserControls
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Jobs.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Jobs : UserControl
     {
-
         List<Job> _Jobs = new List<Job>
         {
             new Job { ID = 1, Title = "Area 1 Maintenance", StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(1) },
-            new Job { ID = 2, Title = "Edge Park", StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(5) },
-            new Job { ID = 3, Title = "Paint Benches", StartDate = DateTime.Now.AddDays(4), EndDate = DateTime.Now.AddDays(10) },
-            new Job { ID = 4, Title = "Build New Wall", StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(15) }
+            new Job { ID = 2, Title = "Edge Park", StartDate = DateTime.Now.AddDays(-5), EndDate = DateTime.Now.AddDays(5)  },
+            new Job { ID = 3, Title = "Paint Benches", StartDate = DateTime.Now.AddDays(4), EndDate = DateTime.Now.AddDays(10)  },
+            new Job { ID = 4, Title = "Build New Wall", StartDate = DateTime.Now, EndDate = DateTime.Now.AddDays(15)  }
         };
 
-    public MainWindow()
+        public Jobs()
         {
             InitializeComponent();
             BindData();
@@ -41,11 +42,9 @@ namespace JobManagement
             comboBox.ItemsSource = _Jobs;
         }
 
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void JobsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine(System.Reflection.MethodBase.GetCurrentMethod());
             Mediator.GetInstance().OnJobChanged(this, (Job)comboBox.SelectedItem);
         }
-
     }
 }
