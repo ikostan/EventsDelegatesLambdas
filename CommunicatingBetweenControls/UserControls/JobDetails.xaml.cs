@@ -23,6 +23,11 @@ namespace CommunicatingBetweenControls.UserControls
         public JobDetails()
         {
             InitializeComponent();
+            Mediator.GetInstance().JobChanged += (obj, args) =>
+            {
+                this.DataContext = args.Job;
+            };
         }
+
     }
 }

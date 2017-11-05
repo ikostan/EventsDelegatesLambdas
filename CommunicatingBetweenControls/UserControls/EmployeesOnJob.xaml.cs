@@ -59,5 +59,6 @@ namespace CommunicatingBetweenControls.UserControls
             var emps = _Employees.Where(e => e.Jobs.Any(j => j.ID == job.ID));
             EmployeesListView.ItemsSource = emps;
         }
+
     }
 }
