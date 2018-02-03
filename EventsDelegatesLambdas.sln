@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingGenericEventHandler", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionSample", "ActionSample\ActionSample.csproj", "{83C2660D-7825-4752-9928-07C6B40A0EDF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FuncSample", "FuncSample\FuncSample.csproj", "{65827421-9DB4-4790-91B6-0DCAA5F35E1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{83C2660D-7825-4752-9928-07C6B40A0EDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83C2660D-7825-4752-9928-07C6B40A0EDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83C2660D-7825-4752-9928-07C6B40A0EDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65827421-9DB4-4790-91B6-0DCAA5F35E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65827421-9DB4-4790-91B6-0DCAA5F35E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65827421-9DB4-4790-91B6-0DCAA5F35E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65827421-9DB4-4790-91B6-0DCAA5F35E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
