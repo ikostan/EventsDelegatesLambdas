@@ -8,15 +8,18 @@ namespace FuncSample
 {
     class Program
     {
-        static Func<string, bool> testStr = (s) => (s == "" || s == null) ? false : true;
+        static Func<string, bool> IsStringEmpty = (s) => (s.Trim() == "" || s == null) ? true : false;
 
         static void Main(string[] args)
         {
             string s = "";
-            Console.WriteLine(TestString(s, testStr));
+            Console.WriteLine(TestString(s, IsStringEmpty));
+
+            string s1 = " ";
+            Console.WriteLine(TestString(s1, IsStringEmpty));
 
             string s2 = "s";
-            Console.WriteLine(TestString(s2, testStr));
+            Console.WriteLine(TestString(s2, IsStringEmpty));
 
             Console.ReadLine();
         }
@@ -26,5 +29,6 @@ namespace FuncSample
             return func(s);
         }
 
+        //End of Class
     }
 }
