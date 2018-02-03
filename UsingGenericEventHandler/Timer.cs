@@ -13,10 +13,20 @@ namespace UsingGenericEventHandler
             //c.timeChanged += new EventHandler<TimeArgs>(ShowTime); //Full reference version
             //c.timeChanged += ShowTime; //Short reference version
 
-            //Anonimus function
-            c.timeChanged += delegate (object src, TimeArgs args)
+            //Anonimus function/method
+            c.timeChanged += delegate(object src, TimeArgs args)
             {
-                Console.WriteLine($"{args.Hours} : {args.Minutes} : {args.Seconds}");
+                Console.Clear();
+                if (args.Seconds % 2 == 0)
+                {
+                    Console.WriteLine(
+                        $"{args.Hours,2:00}:{args.Minutes,2:00}:{args.Seconds,2:00}");
+                }
+                else
+                {
+                    Console.WriteLine(
+                        $"{args.Hours,2:00} {args.Minutes,2:00} {args.Seconds,2:00}");
+                }
             };
         }
 
