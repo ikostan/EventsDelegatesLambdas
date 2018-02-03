@@ -10,7 +10,8 @@ namespace UsingGenericEventHandler
     {
         public void Subscribe(Clock c)
         {
-            c.timeChanged += new EventHandler<TimeArgs>(ShowTime);
+            //c.timeChanged += new EventHandler<TimeArgs>(ShowTime); //Full reference version
+            c.timeChanged += ShowTime; //Short reference version
         }
 
         public void ShowTime(object src, TimeArgs args)
